@@ -100,7 +100,7 @@ button:hover {
     font-weight: bold;
 }
 
-#your_score{
+#your_score {
     font-size: 1.5rem;
     text-align: center;
     color: rgb(5, 13, 248);
@@ -117,4 +117,10 @@ button:hover {
     color: rgb(17, 5, 248);
     display: block;
     margin: 10px auto;
+}
+
+@media (max-width: 768px) {
+    .result_screen {
+        width: 300px;
+    }
 }

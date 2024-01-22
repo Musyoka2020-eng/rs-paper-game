@@ -48,22 +48,27 @@ function playRound(playerSelection, computerSelection) {
         return `You: ${playerSelection} || Computer: ${computerSelection} It's a Tie`;
     }
 
-    if (
-        (playerSelection === 'rock' && computerSelection === 'scissors') ||
-        (playerSelection === 'paper' && computerSelection === 'rock') ||
-        (playerSelection === 'scissors' && computerSelection === 'paper')
-    ) {
+    const outcomes = {
+        'rock-scissors': 'crushes',
+        'paper-rock': 'covers',
+        'scissors-paper': 'cuts',
+    };
+
+    const key = `${playerSelection.toLowerCase()}-${computerSelection.toLowerCase()}`;
+
+    if (outcomes[key]) {
         gameData.userScore++;
+        finalResults();
+        return `You win! ${playerSelection} ${outcomes[key]} ${computerSelection}`;
     } else {
         gameData.computerScore++;
+        finalResults();
+        return `You lose! ${computerSelection} ${outcomes[`${computerSelection.toLowerCase()}-${playerSelection.toLowerCase()}`]} ${playerSelection}`;
     }
-
-    finalResults();
-    return `You ${gameData.userScore > gameData.computerScore ? 'win' : 'lose'}! ${playerSelection} beats ${computerSelection}`;
 }
 
 function countDown() {
-    gameData.time = 10;
+    gameData.time = 15;
     const timer = setInterval(() => {
         gameData.time--;
         timeEl.textContent = gameData.time;
